@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALCULATOR APP</title>
+    <style>
+        body {
+            background-color: #ffe16c; 
+            
+        }
+
+        .Calculator {
+            width: 500px; 
+            margin: 70px auto;
+            background-color: #FFD21F;
+        }
+
+        .Display {
+            background-color: #FFFFFF; 
+            color: #FFFFFF;
+            font-size: 200px;
+            padding: 20px 0;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            display: flex;
+            justify-content: flex-end; 
+            align-items: center;
+        }
+
+        .Buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 2fr);
+            gap: 25px;
+            padding: 25px;
+            justify-items: center; 
+        }
+
+        button {
+            padding: 25px;
+            font-size: 40px;
+            background-color: #0077df; 
+            color: #FFFFFF;
+            border: 20px;
+            border-radius: 20px;
+            transition: background-color 0.2s ease-in-out;
+            width: 90px; 
+            height: 90px; 
+        }
+
+        button:active {
+            background-color: #0077df; 
+        }
+        
+        
+        button:hover {
+            background-color: #004E92; 
+        }
+
+       
+
+        #result {
+            width: 100%;
+            padding: 20px;
+            font-size: 40px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="Calculator">
+        <div class="Display">
+            <input type="text" id="result" readonly>
+        </div>
+        <div class="Buttons">
+            <button onclick="clearResult('C')">C</button> 
+            <button onclick="Number('1')">1</button> 
+            <button onclick="Number('2')">2</button> 
+            <button onclick="Number('3')">3</button> 
+            <button onclick="Number('4')">4</button> 
+            <button onclick="Number('5')">5</button> 
+            <button onclick="Number('6')">6</button> 
+            <button onclick="Number('7')">7</button> 
+            <button onclick="Number('8')">8</button> 
+            <button onclick="Number('9')">9</button> 
+            <button onclick="Number('0')">0</button> 
+            <button onclick="Number('+')">+</button> 
+            <button onclick="Number('-')">-</button> 
+            <button onclick="Number('*')">*</button> 
+            <button onclick="Number('/')">/</button> 
+            <button onclick="Number('.')">.</button> 
+            <button onclick="CalculateResult('=')">=</button> 
+            <button onclick="CalculateSquareRoot()">√</button> 
+            <button onclick="CalculateSquare()">^</button> 
+            <button onclick="PlayAnimation()">🎉</button>
+        </div>
+    </div>
+
+    <script>
+        function Number(value) {
+            document.getElementById('result').value += value;
+        }
+        
+        function clearResult() {
+            document.getElementById('result').value = '';
+            
+        }
+        
+        function CalculateResult() {
+            try {
+                document.getElementById('result').value = eval(document.getElementById('result').value);
+            } catch (error) {
+                document.getElementById('result').value = 'ERROR!!!';
+            }
+        }
+        
+        function CalculateSquareRoot() {
+            const inputValue = parseFloat(document.getElementById('result').value);
+            if (!isNaN(inputValue) && inputValue >= 0) {
+                document.getElementById('result').value = Math.sqrt(inputValue).toFixed(2);
+            } else {
+                document.getElementById('result').value = 'ERROR!!!';
+            }
+        }
+        
+        function CalculateSquare() {
+            const inputValue = parseFloat(document.getElementById('result').value);
+            if (!isNaN(inputValue)) {
+                document.getElementById('result').value = (inputValue * inputValue).toFixed(2);
+            } else {
+                document.getElementById('result').value = 'ERROR!!!';
+            }
+        }
+        function PlayAnimation() {
+            alert("🎉 CONGRATULATIONS!!!");
+        }
+    </script>
+</body>
+</html>
